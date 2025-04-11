@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apimarket</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-effect fixed w-full z-50">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-bold gradient-text">APIMarket</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="hover:text-purple-400">Home</a>
+            <a href="#apis" class="hover:text-purple-400">APIs</a>
+            <a href="#about" class="hover:text-purple-400">About</a>
+            <a href="#contact" class="hover:text-purple-400">Contact</a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button
+              id="loginBtn"
+              class="px-4 py-2 rounded-lg border border-purple-500 hover:bg-purple-500 transition"
+            >
+              Login
+            </button>
+            <button
+              id="signupBtn"
+              class="px-4 py-2 rounded-lg gradient-bg hover:opacity-90 transition"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="pt-32 pb-20 animate-gradient"
+      style="
+        background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      "
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col items-center text-center">
+          <h1 class="text-5xl font-bold mb-6">
+            Premium APIs for Your Applications
+          </h1>
+          <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+            Access high-performance APIs with reliable uptime and comprehensive
+            documentation.
+          </p>
+          <div class="relative w-full max-w-xl">
+            <input
+              type="text"
+              placeholder="Search APIs..."
+              class="w-full px-6 py-4 rounded-full bg-gray-800 border border-gray-700 focus:outline-none focus:border-purple-500"
+            />
+            <button
+              class="absolute right-2 top-2 gradient-bg px-6 py-2 rounded-full"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Listings -->
+    <section id="apis" class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12">Featured APIs</h2>
+
+        <!-- Category Buttons -->
+        <div class="flex flex-wrap gap-4 mb-10">
+          <button
+            onclick="filterApis('all')"
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+          >
+            All
+          </button>
+          <button
+            onclick="filterApis('finance')"
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+          >
+            Finance
+          </button>
+          <button
+            onclick="filterApis('ai')"
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+          >
+            AI/ML
+          </button>
+          <button
+            onclick="filterApis('data')"
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+          >
+            Data Services
+          </button>
+        </div>
+
+        <!-- API Cards Grid -->
+        <div
+          id="api-list"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <!-- Finance APIs -->
+          <div
+            class="api-card bg-gray-800 rounded-xl p-6 border border-gray-700 category-finance"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-semibold">Payment API</h3>
+              <span class="px-3 py-1 bg-purple-500 rounded-full text-sm"
+                >Finance</span
+              >
+            </div>
+            <p class="text-gray-400 mb-4">
+              Secure payment processing API with support for multiple currencies
+              and payment methods.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold"
+                >$49<span class="text-sm text-gray-400">/month</span></span
+              >
+              <button class="px-4 py-2 gradient-bg rounded-lg">Purchase</button>
+            </div>
+          </div>
+
+          <div
+            class="api-card bg-gray-800 rounded-xl p-6 border border-gray-700 category-finance"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-semibold">Invoice API</h3>
+              <span class="px-3 py-1 bg-purple-500 rounded-full text-sm"
+                >Finance</span
+              >
+            </div>
+            <p class="text-gray-400 mb-4">
+              Easily generate and send digital invoices with tax and discount
+              features.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold"
+                >$39<span class="text-sm text-gray-400">/month</span></span
+              >
+              <button class="px-4 py-2 gradient-bg rounded-lg">Purchase</button>
+            </div>
+          </div>
+
+          <!-- AI/ML APIs -->
+          <div
+            class="api-card bg-gray-800 rounded-xl p-6 border border-gray-700 category-ai"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-semibold">AI Vision API</h3>
+              <span class="px-3 py-1 bg-purple-500 rounded-full text-sm"
+                >AI/ML</span
+              >
+            </div>
+            <p class="text-gray-400 mb-4">
+              Advanced computer vision API for image recognition and analysis.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold"
+                >$99<span class="text-sm text-gray-400">/month</span></span
+              >
+              <button class="px-4 py-2 gradient-bg rounded-lg">Purchase</button>
+            </div>
+          </div>
+
+          <div
+            class="api-card bg-gray-800 rounded-xl p-6 border border-gray-700 category-ai"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-semibold">Text Generator API</h3>
+              <span class="px-3 py-1 bg-purple-500 rounded-full text-sm"
+                >AI/ML</span
+              >
+            </div>
+            <p class="text-gray-400 mb-4">
+              Generate high-quality marketing copy and summaries using AI.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold"
+                >$59<span class="text-sm text-gray-400">/month</span></span
+              >
+              <button class="px-4 py-2 gradient-bg rounded-lg">Purchase</button>
+            </div>
+          </div>
+
+          <!-- Data APIs -->
+          <div
+            class="api-card bg-gray-800 rounded-xl p-6 border border-gray-700 category-data"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-semibold">Weather API</h3>
+              <span class="px-3 py-1 bg-purple-500 rounded-full text-sm"
+                >Data</span
+              >
+            </div>
+            <p class="text-gray-400 mb-4">
+              Real-time weather data and forecasting API with global coverage.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold"
+                >$29<span class="text-sm text-gray-400">/month</span></span
+              >
+              <button class="px-4 py-2 gradient-bg rounded-lg">Purchase</button>
+            </div>
+          </div>
+
+          <div
+            class="api-card bg-gray-800 rounded-xl p-6 border border-gray-700 category-data"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-semibold">Stock Market Data API</h3>
+              <span class="px-3 py-1 bg-purple-500 rounded-full text-sm"
+                >Data</span
+              >
+            </div>
+            <p class="text-gray-400 mb-4">
+              Access real-time stock quotes, historical data, and financial
+              metrics.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold"
+                >$69<span class="text-sm text-gray-400">/month</span></span
+              >
+              <button class="px-4 py-2 gradient-bg rounded-lg">Purchase</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center">About Us</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+          <div>
+            <h3 class="text-2xl font-bold mb-6">Our Story</h3>
+            <p class="text-gray-300 mb-4">
+              Founded in 2023, APIMarket has grown to become the leading
+              marketplace for premium APIs. We believe in providing developers
+              with the tools they need to build extraordinary applications.
+            </p>
+            <p class="text-gray-300">
+              Our platform serves over 100,000 developers worldwide, processing
+              millions of API requests daily with 99.99% uptime.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gray-700 p-6 rounded-lg text-center">
+              <h4 class="text-3xl font-bold text-purple-400">100K+</h4>
+              <p class="text-gray-300">Active Users</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg text-center">
+              <h4 class="text-3xl font-bold text-purple-400">500+</h4>
+              <p class="text-gray-300">APIs Available</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg text-center">
+              <h4 class="text-3xl font-bold text-purple-400">99.99%</h4>
+              <p class="text-gray-300">Uptime</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg text-center">
+              <h4 class="text-3xl font-bold text-purple-400">24/7</h4>
+              <p class="text-gray-300">Support</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-bold mb-8 text-center">Our Team</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="team-member text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="John Doe"
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h4 class="text-xl font-bold">John Doe</h4>
+            <p class="text-gray-400">CEO &amp; Founder</p>
+          </div>
+          <div class="team-member text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Jane Smith"
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h4 class="text-xl font-bold">Jane Smith</h4>
+            <p class="text-gray-400">CTO</p>
+          </div>
+          <div class="team-member text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Mike Johnson"
+              class="w-32 h-32 rounded-full mx-auto mb-4"
+            />
+            <h4 class="text-xl font-bold">Mike Johnson</h4>
+            <p class="text-gray-400">Lead Developer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center">Contact Us</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
+            <form class="space-y-6">
+              <div>
+                <label class="block text-gray-400 mb-2">Name</label>
+                <input
+                  type="text"
+                  class="w-full px-4 py-2 bg-gray-800 rounded-lg border border-gray-700 focus:outline-none focus:border-purple-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-400 mb-2">Email</label>
+                <input
+                  type="email"
+                  class="w-full px-4 py-2 bg-gray-800 rounded-lg border border-gray-700 focus:outline-none focus:border-purple-500"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-400 mb-2">Message</label>
+                <textarea
+                  rows="4"
+                  class="w-full px-4 py-2 bg-gray-800 rounded-lg border border-gray-700 focus:outline-none focus:border-purple-500"
+                ></textarea>
+              </div>
+              <button type="submit" class="w-full py-3 gradient-bg rounded-lg">
+                Send Message
+              </button>
+            </form>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <i class="fas fa-map-marker-alt w-8 text-purple-400"></i>
+                <span>123 Tech Street, Silicon Valley, CA 94025</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-phone w-8 text-purple-400"></i>
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-envelope w-8 text-purple-400"></i>
+                <span>contact@apimarket.com</span>
+              </div>
+            </div>
+            <div class="mt-8">
+              <h4 class="text-xl font-bold mb-4">Office Hours</h4>
+              <p class="text-gray-400">
+                Monday - Friday: 9:00 AM - 6:00 PM (PST)
+              </p>
+              <p class="text-gray-400">Saturday - Sunday: Closed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div
+      id="authModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50"
+    >
+      <div
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      >
+        <div class="bg-gray-800 p-8 rounded-xl w-96">
+          <h3 class="text-2xl font-bold mb-6">Login</h3>
+          <form id="authForm">
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full px-4 py-2 mb-4 bg-gray-700 rounded-lg"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-2 mb-6 bg-gray-700 rounded-lg"
+            />
+            <button type="submit" class="w-full py-3 gradient-bg rounded-lg">
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h4 class="text-xl font-bold mb-4">APIMarket</h4>
+            <p class="text-gray-400">Your trusted source for premium APIs.</p>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#home" class="hover:text-white">Home</a></li>
+              <li><a href="#apis" class="hover:text-white">APIs</a></li>
+              <li><a href="#about" class="hover:text-white">About</a></li>
+              <li><a href="#contact" class="hover:text-white">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-4">Legal</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+              <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-4">Connect</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Authentication handling
+      const loginBtn = document.getElementById("loginBtn");
+      const signupBtn = document.getElementById("signupBtn");
+      const authModal = document.getElementById("authModal");
+      const authForm = document.getElementById("authForm");
+
+      loginBtn.addEventListener("click", () => {
+        authModal.classList.remove("hidden");
+      });
+
+      // Close modal when clicking outside
+      authModal.addEventListener("click", (e) => {
+        if (e.target === authModal) {
+          authModal.classList.add("hidden");
+        }
+      });
+
+      // Admin credentials (in production, this should be handled server-side)
+      const adminCredentials = {
+        email: "admin@apimarket.com",
+        password: "admin123",
+      };
+
+      // Handle form submission
+      authForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = authForm.querySelector('input[type="email"]').value;
+        const password = authForm.querySelector('input[type="password"]').value;
+
+        if (
+          email === adminCredentials.email &&
+          password === adminCredentials.password
+        ) {
+          alert("Admin login successful!");
+        } else {
+          alert("Login successful!");
+        }
+
+        authModal.classList.add("hidden");
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Crypto payment processing (example)
+      function processCryptoPayment(apiId) {
+        const paymentAddress = generatePaymentAddress();
+
+        monitorPayment(paymentAddress).then((success) => {
+          if (success) {
+            const apiKey = generateApiKey();
+            saveApiKeyToUser(apiKey);
+          }
+        });
+      }
+
+      function generatePaymentAddress() {
+        return "0x" + Math.random().toString(36).substr(2, 32);
+      }
+
+      function monitorPayment(address) {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(true), 2000);
+        });
+      }
+
+      function generateApiKey() {
+        return "ak_" + Math.random().toString(36).substr(2, 32);
+      }
+
+      function saveApiKeyToUser(apiKey) {
+        console.log("API Key saved:", apiKey);
+      }
+    </script>
+    <script>
+      function filterApis(category) {
+        const cards = document.querySelectorAll(".api-card");
+        cards.forEach((card) => {
+          card.style.display =
+            category === "all" ||
+            card.classList.contains("category-" + category)
+              ? "block"
+              : "none";
+        });
+      }
+
+      // Show all by default
+      filterApis("all");
+    </script>
+    <div id="browser-script-root"></div>
+  </body>
+</html>
